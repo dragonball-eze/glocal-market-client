@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 function EditPicture({match}) {
     const [imageUrl, setImageUrl] = useState("");
@@ -51,7 +52,7 @@ function EditPicture({match}) {
         <label>Image: </label>
         <input type="file" onChange={(e) => setImageUrl(e.target.files[0])} />
 
-        <button type="submit">Update</button>
+        <Button variant="outline-dark" type="submit">Update</Button>
       </form>
     </>
   );

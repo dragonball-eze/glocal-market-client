@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Col, Row, Button } from 'react-bootstrap';
+import { Card, Col, Row, Button } from "react-bootstrap";
 
 function ListBooks() {
   const [books, setBooks] = useState([]);
@@ -31,30 +31,36 @@ function ListBooks() {
               </div>
           })}
       </div> */}
-      {books.map((book) => {
-              return <div key={book.id}>
-              <Row xs={1} md={2} className="g-4">
-                {Array.from({ length: 1 }).map((_, idx) => (
-                  <Col>
-                    <Card style={{ width: '18rem' }}>
-                      <Card.Img variant="top" src={book.imageUrl} alt="book cover"  />
-                      <Card.Body>
-                        <Card.Title>{book.title}</Card.Title>
-                        <Card.Text>
+      {/* xs={1} md={2} className="g-4" */}
+      <Row md={3}>
+        {books.map((book) => {
+          return (
+            <div key={book.id}>
+              {Array.from({ length: 1 }).map((_, idx) => (
+                <Col>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img
+                      variant="top"
+                      src={book.imageUrl}
+                      alt="book cover"
+                    />
+                    <Card.Body>
+                      <Card.Title>{book.title}</Card.Title>
+                      <Card.Text>
                         <b>Review:</b> {book.review}
-                        </Card.Text>
-                        <Button variant="primary" href={`/books/${book._id}`}>More Details</Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-              </div>
-      })}
+                      </Card.Text>
+                      <Button variant="primary" href={`/books/${book._id}`}>
+                        More Details
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </div>
+          );
+        })}
+      </Row>
     </>
-  )
+  );
 }
 export default ListBooks;
-
-
-

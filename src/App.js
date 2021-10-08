@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
@@ -26,7 +26,7 @@ import EditPicture from "./components/EditPicture";
 
 function App() {
   const [loggedInUser, setCurrentLoggedInUser] = useState("");
-
+  console.log("sgaethsthsth", loggedInUser);
   useEffect(() => {
     async function checkLoggedIn() {
       const response = await axios.get(
@@ -59,20 +59,29 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/books" component={ListBooks} />
-          <PrivateRoute exact path="/books/add" component={AddBook} />
+          <Route exact path="/books/add" component={AddBook} />
           <Route exact path="/books/:id" component={BookDetails} />
-          <PrivateRoute exact path="/books/:id/edit" component={EditBook} />
+          <Route exact path="/books/:id/edit" component={EditBook} />
           <Route exact path="/clothes" component={ListClothes} />
-          <PrivateRoute exact path="/clothes/add" component={AddGarment} />
+          <Route exact path="/clothes/add" component={AddGarment} />
           <Route exact path="/clothes/:id" component={GarmentDetails} />
-          <PrivateRoute
+          <Route
             exact
             path="/clothes/:id/edit"
             component={EditGarment}
           />
-          <Route exact path="/profile/:id" component={Profile} /> {/* check if non logged user can check profiles */}
-          <PrivateRoute exact path="/profile/:id/edit" component={EditProfile} />
-          <PrivateRoute exact path="/profile/:id/image" component={EditPicture} />
+          <Route exact path="/profile/:id" component={Profile} />{" "}
+          {/* check if non logged user can check profiles */}
+          <Route
+            exact
+            path="/profile/:id/edit"
+            component={EditProfile}
+          />
+          <Route
+            exact
+            path="/profile/:id/image"
+            component={EditPicture}
+          />
         </Switch>
       </LoggedUserProvider>
     </div>

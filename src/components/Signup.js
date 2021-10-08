@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Button } from "react-bootstrap";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -37,7 +38,7 @@ function Signup() {
           value={password}
         />
 
-        <button type="submit">Signup</button>
+        <Button variant="outline-dark" type="submit">Signup</Button>
       </form>
     </>
   );

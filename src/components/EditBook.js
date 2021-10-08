@@ -86,7 +86,7 @@ function EditBook({ match }) {
           <Form.Label>Image</Form.Label>
           <Form.Control type="file" onChange={(e) => setImageUrl(e.target.files[0])} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="outline-dark" variant="primary" type="submit">
           Update
         </Button>
     </Form>

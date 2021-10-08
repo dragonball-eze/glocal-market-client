@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useHistory, NavLink } from "react-router-dom";
 import { LoggedUserConsumer } from "../context/loggedUser";
-import LinkButton from "./LinkButton";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 function GarmentDetails({ match }) {
   const [garment, setGarment] = useState({});
@@ -17,7 +17,7 @@ function GarmentDetails({ match }) {
         `${process.env.REACT_APP_SERVER_HOSTNAME}/clothes/${match.params.id}`
       );
       setGarment(response.data);
-      setButtonText(`Contact ${response.data.user.username}`)
+      setButtonText(`Contact ${response.data.user.username}`);
       setUser(response.data.user);
     }
     getGarmentDetails();
@@ -32,42 +32,53 @@ function GarmentDetails({ match }) {
 
   return (
     <>
-      <h2>Brand: {garment.brand}</h2>
-      <h3>Size: {garment.size}</h3>
-      <h3>Type: {garment.type}</h3>
-      <h3>Level of Usage: {garment.usage}</h3>
-      {user && <h4>Offered by: {user.username}</h4>}
+      <Container>
+        <Row>
+          <h1>Is it a Match?</h1>
+        </Row>
+        <Row>
+          <Col>
+            {garment.imageUrl && (
+              <img src={garment.imageUrl} className="images" alt="garment" />
+            )}
+          </Col>
+          <Col>
+            <h2>Brand: {garment.brand}</h2>
+            <h3>Size: {garment.size}</h3>
+            <h3>Type: {garment.type}</h3>
+            <h3>Level of Usage: {garment.usage}</h3>
+            {user && <h4>Offered by: {user.username}</h4>}
+          </Col>
 
-      {garment.imageUrl && <img src={garment.imageUrl} alt="garment" />}
+          {user.username === loggedInUser.username ? (
+            <>
+              <NavLink to={`/clothes/${garment._id}/edit`}>Edit</NavLink>
+              <button onClick={() => handleDeleteProject(garment._id)}>
+                Delete
+              </button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline-dark">
+                <a
+                  href={`/profile/${user._id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {" "}
+                  User Profile{" "}
+                </a>
+              </Button>
 
-      {user.username === loggedInUser.username ? (
-        <>
-          <NavLink to={`/clothes/${garment._id}/edit`}>Edit</NavLink>
-          <button onClick={() => handleDeleteProject(garment._id)}>
-            Delete
-          </button>
-        </>
-      ) : (
-        <>
-          <LinkButton
-            to={`/profile/${user._id}`}
-            onClick={(event) => {
-              console.log("custom event here!", event);
-            }}
-          >
-            User Profile
-          </LinkButton>
-          {user.username === loggedInUser && (
-          <button onClick={() => setButtonText(`${user.email} or ${user.phone}`)}> {buttonText}</button>
+              <Button
+                variant="outline-dark"
+                onClick={() => setButtonText(`${user.email} or ${user.phone}`)}
+              >
+                {buttonText}
+              </Button>
+            </>
           )}
-          {/* <LinkButton
-              to={`/profile/${user._id}`}
-              onClick={(event) => {
-                console.log('custom event here!', event)
-              }}
-            >Add to Favorites</LinkButton> */}
-        </>
-      )}
+        </Row>
+      </Container>
     </>
   );
 }

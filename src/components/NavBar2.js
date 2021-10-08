@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap';
+import {Navbar, Container, Nav, NavDropdown, Button} from 'react-bootstrap';
 import axios from "axios";
 
 
@@ -21,7 +21,7 @@ function NavBar2({ loggedInUser, setCurrentLoggedInUser }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
+              {/* <Nav.Link href="/about">About</Nav.Link> */}
               
               <NavDropdown title="Market" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/books">Books</NavDropdown.Item>
@@ -29,7 +29,7 @@ function NavBar2({ loggedInUser, setCurrentLoggedInUser }) {
               </NavDropdown>
               <Nav.Link href={`/profile/${loggedInUser._id}`}>My Profile</Nav.Link>
               <Nav.Link href="/">
-                <button onClick={logoutUser}>Logout</button>
+                <Button variant="outline-dark" onClick={logoutUser}>Logout</Button>
                 </Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -44,16 +44,16 @@ function NavBar2({ loggedInUser, setCurrentLoggedInUser }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
+              {/* <Nav.Link href="/about">About</Nav.Link> */}
               <NavDropdown title="Market" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/books">Books</NavDropdown.Item>
                 <NavDropdown.Item href="/clothes">Clothes</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <Nav.Link href="/signup">
-                <button>Sign Up</button>
+                <Button variant="outline-dark">Sign Up</Button>
                 </Nav.Link>
                 <Nav.Link href="/login">
-                <button>Log In</button>
+                <Button variant="outline-dark">Log In</Button>
                 </Nav.Link>
               </NavDropdown>
             </Nav>

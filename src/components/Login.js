@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Button } from "react-bootstrap";
 
 function Login({ setCurrentLoggedInUser }) {
   const [username, setUsername] = useState("");
@@ -34,21 +35,21 @@ function Login({ setCurrentLoggedInUser }) {
     <>
       <h2>Login</h2>
       <form onSubmit={handleFormSubmit}>
-        <label>Username</label>
+        <label>Username: </label>
         <input
           type="text"
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
 
-        <label>Password</label>
+        <label>Password: </label>
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
 
-        <button type="submit">Login</button>
+        <Button variant="outline-dark" type="submit">Login</Button>
       </form>
     </>
   );
