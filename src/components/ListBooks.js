@@ -6,7 +6,9 @@ function ListBooks() {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     async function getAllBooks() {
-      const response = await axios.get("http://localhost:5000/books");
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_HOSTNAME}/books`
+      );
       setBooks(response.data);
     }
     getAllBooks();

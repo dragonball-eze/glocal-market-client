@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button, Row, Col } from "react-bootstrap";
 
 function ListClothes() {
   const [clothes, setClothes] = useState([]);
-/*   const [user, setUser] = useState({}); */
+  /*   const [user, setUser] = useState({}); */
 
   useEffect(() => {
     async function getAllClothes() {
-      const response = await axios.get("http://localhost:5000/clothes");
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_HOSTNAME}/clothes`
+      );
       console.log(response.data);
       setClothes(response.data);
       /* setUser(response.data); */
@@ -53,11 +55,16 @@ function ListClothes() {
                       alt="garment"
                     />
                     <Card.Body>
-                      <Card.Title>{garment.brand} {garment.type}</Card.Title>
+                      <Card.Title>
+                        {garment.brand} {garment.type}
+                      </Card.Title>
                       <Card.Text>
-                      Kindly proposed by: {garment.user.username}
+                        Kindly proposed by: {garment.user.username}
                       </Card.Text>
-                      <Button variant="primary" href={`/clothes/${garment._id}`}>
+                      <Button
+                        variant="primary"
+                        href={`/clothes/${garment._id}`}
+                      >
                         More Details
                       </Button>
                     </Card.Body>
@@ -68,9 +75,7 @@ function ListClothes() {
           );
         })}
       </Row>
-
     </>
-  )
+  );
 }
 export default ListClothes;
-
